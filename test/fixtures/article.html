@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lupa test article</title>
+<style>
+  body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: #ffffff; color: #1f2328; }
+  header { background: #0b3d91; color: #fff; padding: 14px 28px; display: flex; gap: 26px; align-items: center; font-size: 15px; }
+  header b { font-size: 20px; margin-right: 12px; }
+  .wrap { display: flex; gap: 36px; padding: 26px 28px; }
+  main { flex: 1 1 auto; max-width: 640px; }
+  aside { width: 230px; background: #f1f5f9; border-radius: 10px; padding: 14px 16px; font-size: 14px; height: fit-content; }
+  h1 { font-size: 30px; margin: 0 0 8px; line-height: 1.2; }
+  h2 { font-size: 21px; margin: 22px 0 6px; }
+  p { font-size: 16px; line-height: 1.6; margin: 0 0 14px; }
+  ul { font-size: 16px; line-height: 1.7; margin: 0 0 14px; padding-left: 22px; }
+  button { background: #1a73e8; color: #fff; border: 0; border-radius: 6px; padding: 9px 18px; font-size: 15px; }
+  code { background: #eef1f4; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace; }
+  pre { background: #0d1117; color: #e6edf3; padding: 12px 14px; border-radius: 8px; font-size: 14px; }
+</style>
+</head>
+<body>
+<header><b>DevDocs</b><span>Getting started</span><span>API reference</span><span>Community</span><span>Pricing</span></header>
+<div class="wrap">
+<main>
+  <h1>Understanding asynchronous programming</h1>
+  <p>Asynchronous programming allows a program to start a long-running task and still be responsive to other events while that task runs, rather than having to wait until the task has finished.</p>
+  <h2>Why it matters for modern applications</h2>
+  <p>Many functions provided by browsers can take a long time to complete, and therefore are asynchronous. For example, fetching a resource over the network or asking the user to choose a file can block the main thread if they are handled synchronously.</p>
+  <ul>
+    <li>Fetch data from a remote server without freezing the page.</li>
+    <li>Read large files in the background.</li>
+    <li>Handle user input while work continues.</li>
+  </ul>
+  <pre>const data = await fetch(url);</pre>
+  <p>Please install the latest version before you continue. Use the <code>npm install</code> command to download all required packages.</p>
+  <button>Download the documentation</button>
+</main>
+<aside><b>On this page</b><br><br>Introduction<br>Callbacks and promises<br>Using async functions<br>Common mistakes<br>Further reading</aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "name": "lupa-traductor",
+  "productName": "Lupa",
+  "version": "1.0.0",
+  "description": "Lente flotante que lee el texto de tu pantalla y lo traduce al español en tiempo real. Gratis, sin claves.",
+  "main": "src/main/main.js",
+  "author": "Lupa",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "icons": "electron scripts/make-icons.js",
+    "tessdata": "node scripts/fetch-tessdata.js",
+    "dist": "electron-builder --win nsis portable --x64",
+    "dist:dir": "electron-builder --win dir --x64"
+  },
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.lupa.traductor",
+    "productName": "Lupa",
+    "copyright": "Lupa",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "assets/icon.png",
+      "assets/tray.png",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/tessdata",
+        "to": "tessdata"
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/**/*"
+    ],
+    "electronLanguages": [
+      "es",
+      "en-US"
+    ],
+    "compression": "normal",
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": true
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Lupa",
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "Lupa-Instalador-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Lupa-Portable-${version}.${ext}"
+    }
+  }
+}

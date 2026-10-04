@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Lupa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="lens" class="lens" data-mode="overlay" data-theme="dark" data-state="idle">
+    <div class="glass"></div>
+    <div class="frame"></div>
+
+    <header id="bar" class="bar" data-interactive>
+      <div class="brand" data-drag data-tip="Arrastra para mover la lente">
+        <span class="logo" id="logo"></span>
+        <span class="dot" id="dot"></span>
+        <span class="status-text" id="statusText">Lista</span>
+      </div>
+      <button id="langBtn" class="chip" data-tip="Idioma original" type="button">
+        <span id="langLabel">Auto</span>
+        <span class="arrow" id="langArrow"></span>
+        <span id="targetLabel">ES</span>
+      </button>
+      <div class="spacer" data-drag></div>
+      <div class="tools">
+        <button id="modeBtn" class="tool" type="button"></button>
+        <button id="opacityBtn" class="tool" type="button"></button>
+        <button id="pauseBtn" class="tool" type="button"></button>
+        <button id="refreshBtn" class="tool" type="button"></button>
+        <button id="settingsBtn" class="tool" type="button" data-tip="Ajustes"></button>
+        <span class="sep"></span>
+        <button id="hideBtn" class="tool" type="button"></button>
+        <button id="closeBtn" class="tool tool-close" type="button" data-tip="Cerrar Lupa"></button>
+      </div>
+    </header>
+    <div class="progress" id="progress"></div>
+
+    <main id="stage" class="stage">
+      <div id="overlayLayer" class="overlay-layer"></div>
+      <article id="reader" class="reader" hidden></article>
+      <div id="hint" class="hint" hidden></div>
+    </main>
+
+    <div id="tip" class="tip" hidden></div>
+
+    <!-- Popovers -->
+    <div id="langMenu" class="pop pop-lang" data-interactive hidden>
+      <div class="pop-title">Idioma del texto original</div>
+      <div id="langList" class="list"></div>
+    </div>
+
+    <div id="opacityPop" class="pop pop-opacity" data-interactive hidden>
+      <div class="pop-title">Transparencia <span id="opacityMode" class="muted"></span></div>
+      <div class="slider-row">
+        <span class="ico-sm" id="icoGlass"></span>
+        <input id="opacityRange" type="range" min="5" max="100" step="1">
+        <span class="ico-sm" id="icoSolid"></span>
+      </div>
+      <div class="pop-foot"><span id="opacityValue">14%</span><span class="muted">La ventana nunca desaparece del todo</span></div>
+    </div>
+
+    <div id="settingsPanel" class="pop pop-settings" data-interactive hidden>
+      <div class="pop-title">Ajustes</div>
+      <div class="rows">
+        <div class="row">
+          <label>Traducir a</label>
+          <div id="targetSeg" class="seg seg-wrap"></div>
+        </div>
+        <div class="row">
+          <label>Vista</label>
+          <div id="modeSeg" class="seg"></div>
+        </div>
+        <div class="row" id="themeRow">
+          <label>Tema de lectura</label>
+          <div id="themeSeg" class="seg"></div>
+        </div>
+        <div class="row">
+          <label>Tamaño del texto <span id="fontValue" class="muted">100%</span></label>
+          <input id="fontRange" type="range" min="70" max="160" step="5">
+        </div>
+        <div class="row">
+          <label>Velocidad</label>
+          <div id="speedSeg" class="seg"></div>
+        </div>
+        <div class="row">
+          <label>Motor de lectura (OCR)</label>
+          <div id="engineSeg" class="seg"></div>
+          <div id="engineInfo" class="hint-sm"></div>
+        </div>
+        <div class="row row-switch">
+          <label for="passSwitch">Los clics atraviesan la lente<span class="hint-sm">Puedes usar la página de atrás sin mover la ventana</span></label>
+          <button id="passSwitch" class="switch" type="button" role="switch"></button>
+        </div>
+        <div class="row row-switch">
+          <label for="topSwitch">Siempre al frente</label>
+          <button id="topSwitch" class="switch" type="button" role="switch"></button>
+        </div>
+        <div class="row row-actions">
+          <button id="resetBtn" class="btn" type="button">Restablecer posición</button>
+          <button id="quitBtn" class="btn btn-danger" type="button">Salir</button>
+        </div>
+        <div class="shortcuts" id="shortcuts"></div>
+      </div>
+    </div>
+
+    <!-- Asas de redimensionado (viven en el margen transparente y en los bordes) -->
+    <div class="handle h-n" data-interactive data-resize="n"></div>
+    <div class="handle h-s" data-interactive data-resize="s"></div>
+    <div class="handle h-e" data-interactive data-resize="e"></div>
+    <div class="handle h-w" data-interactive data-resize="w"></div>
+    <div class="handle h-nw" data-interactive data-resize="nw"></div>
+    <div class="handle h-ne" data-interactive data-resize="ne"></div>
+    <div class="handle h-sw" data-interactive data-resize="sw"></div>
+    <div class="handle h-se" data-interactive data-resize="se"><span class="grip"></span></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
